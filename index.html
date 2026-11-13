@@ -134,19 +134,36 @@ a{color:inherit;text-decoration:none}
 .tag h3{font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;color:var(--ink);line-height:1}
 .tag p{color:var(--muted);font-size:15px;margin-top:8px}
 
-/* ---------- on the job ---------- */
-.job{background:var(--concrete);padding:110px 0}
-.job-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:44px;gap:20px;flex-wrap:wrap}
-.job-head .mono{color:var(--navy)}
-.job-head h2{font-family:var(--display);font-weight:900;font-size:clamp(40px,4.6vw,64px);text-transform:uppercase;line-height:.95;color:var(--ink);margin-top:12px}
-.job-grid{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:auto auto;gap:18px}
-.job-grid figure{position:relative;overflow:hidden;border-radius:3px;background:var(--ink)}
-.job-grid figure img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
-.job-grid figure:hover img{transform:scale(1.04)}
-.job-grid .big{grid-row:span 2;aspect-ratio:auto}
-.job-grid .big img{aspect-ratio:16/12.5}
-.job-grid .sm img{aspect-ratio:4/3}
-.job-grid figcaption{position:absolute;left:16px;bottom:16px;background:#fff;color:var(--ink);padding:8px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;border-left:3px solid var(--cyan)}
+/* ---------- street to skyline ---------- */
+.reach{background:var(--concrete);padding:110px 0 0;position:relative;overflow:hidden}
+.reach::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 79px,rgba(0,90,157,.07) 79px 80px);pointer-events:none}
+.reach .wrap{position:relative}
+.reach-head{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;margin-bottom:60px}
+.reach-head .mono{color:var(--navy)}
+.reach-head h2{font-family:var(--display);font-weight:900;font-size:clamp(44px,5.6vw,84px);text-transform:uppercase;line-height:.9;color:var(--ink);margin-top:14px}
+.reach-head h2 span{color:var(--cyan)}
+.reach-head p{max-width:330px;color:var(--muted);font-size:16px}
+.skyline{display:grid;grid-template-columns:64px 1fr 1fr 1fr;gap:0 22px;align-items:end;position:relative}
+.ruler{align-self:stretch;position:relative;border-right:2px solid var(--ink)}
+.ruler span{position:absolute;right:10px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--navy);transform:translateY(50%)}
+.ruler span::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:2px;background:var(--ink)}
+.tower{position:relative;display:flex;flex-direction:column}
+.tower .shaft{position:relative;overflow:hidden;background:var(--ink);border-radius:3px 3px 0 0}
+.tower .shaft img{width:100%;height:100%;object-fit:cover;transition:transform 1s}
+.tower:hover .shaft img{transform:scale(1.05)}
+.tower .shaft::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,42,.55),transparent 32%)}
+.tower .lvl{position:absolute;top:18px;left:18px;right:18px;z-index:2;display:flex;justify-content:space-between;color:#fff}
+.tower .lvl b{font-family:var(--display);font-weight:800;font-size:44px;line-height:.8;color:var(--cyan)}
+.t1 .shaft{height:300px}
+.t2 .shaft{height:450px}
+.t3 .shaft{height:620px}
+.t3 .shaft img{object-position:50% 60%}
+.t2 .shaft img{object-position:68% 50%}
+.ground{grid-column:1/-1;height:6px;background:var(--ink);margin-top:-1px}
+.plates{display:grid;grid-template-columns:64px 1fr 1fr 1fr;gap:22px;padding:30px 0 100px}
+.plate h3{font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;color:var(--ink);line-height:1}
+.plate p{color:var(--muted);font-size:15px;margin-top:10px;max-width:330px}
+.plate a{display:inline-block;margin-top:14px;font-weight:700;font-size:14px;color:var(--navy);border-bottom:2px solid var(--cyan)}
 
 /* ---------- owner ---------- */
 .owner{padding:120px 0;background:#fff}
@@ -235,8 +252,15 @@ footer ul a:hover{color:var(--cyan)}
   .statement .cols,.fgrid{grid-template-columns:1fr}
   .row{grid-template-columns:44px 1fr auto;padding:22px 18px;gap:14px}
   .row h3{font-size:24px}
-  .job-grid{grid-template-columns:1fr}
-  .job-grid .big{grid-row:auto}
+  .reach-head{grid-template-columns:1fr}
+  .skyline,.plates{grid-template-columns:1fr}
+  .ruler,.plates>span{display:none}
+  .t1 .shaft,.t2 .shaft,.t3 .shaft{height:300px}
+  .plates{padding:0 0 80px;gap:0}
+  .ground{display:none}
+  .tower{margin-bottom:0}
+  .plate{padding:20px 0 34px}
+  .skyline{display:flex;flex-direction:column;gap:0;align-items:stretch}
   .owner-txt,form.quote{padding:34px 24px}
   .tag{grid-template-columns:72px 1fr}
   .tag .txt{padding:22px 20px 22px 28px}
@@ -392,20 +416,34 @@ footer ul a:hover{color:var(--cyan)}
   </div>
 </section>
 
-<!-- ON THE JOB -->
-<section class="job" data-floor="05">
+<!-- STREET TO SKYLINE -->
+<section class="reach" data-floor="05">
   <div class="wrap">
-    <div class="job-head rv">
+    <div class="reach-head rv">
       <div>
-        <div class="mono">On the job</div>
-        <h2>Glass, concrete<br>and everything between</h2>
+        <div class="mono">On the job · Any height</div>
+        <h2>From the sidewalk<br><span>to the skyline</span></h2>
       </div>
-      <a href="#estimate" class="btn btn-navy">Get an Estimate</a>
+      <p>No property is too big. Our trained crews work from the ground to the top floor with the right equipment for every level.</p>
     </div>
-    <div class="job-grid rv">
-      <figure class="big"><img src="images/gallery-building-wash-wide.jpg" alt="Exterior building washing on a commercial building"><figcaption>Exterior building wash</figcaption></figure>
-      <figure class="sm"><img src="images/gallery-high-rise-glass.jpg" alt="High-rise window cleaning"><figcaption>High-rise windows</figcaption></figure>
-      <figure class="sm"><img src="images/gallery-plaza-pressure-wash.jpg" alt="Commercial pressure washing"><figcaption>Pressure washing</figcaption></figure>
+    <div class="skyline rv">
+      <div class="ruler" aria-hidden="true"><span style="bottom:16px">GRD</span><span style="bottom:300px">LOW</span><span style="bottom:450px">MID</span><span style="bottom:620px">HIGH</span></div>
+      <div class="tower t1">
+        <div class="shaft"><img src="images/gallery-plaza-pressure-wash.jpg" alt="Commercial pressure washing at street level"><div class="lvl"><span class="mono">Ground level</span><b>01</b></div></div>
+      </div>
+      <div class="tower t2">
+        <div class="shaft"><img src="images/gallery-building-wash-wide.jpg" alt="Exterior building washing from a boom lift"><div class="lvl"><span class="mono">Facade</span><b>02</b></div></div>
+      </div>
+      <div class="tower t3">
+        <div class="shaft"><img src="images/gallery-high-rise-glass.jpg" alt="High-rise window cleaning from a swing stage"><div class="lvl"><span class="mono">High-rise</span><b>03</b></div></div>
+      </div>
+      <div class="ground"></div>
+    </div>
+    <div class="plates">
+      <span></span>
+      <div class="plate rv"><h3>Pressure Washing</h3><p>Walkways, plazas and entrances cleared of tough dirt and stains with high-powered equipment.</p><a href="https://kwccalgary.com/commercial-pressure-washing/">Commercial Pressure Washing</a></div>
+      <div class="plate rv"><h3>Exterior Building Wash</h3><p>Facades and panels brought back to a fresh, well kept look with modern equipment.</p><a href="https://kwccalgary.com/exterior-building-wash/">Exterior Building Wash</a></div>
+      <div class="plate rv"><h3>High-Rise Windows</h3><p>Downtown office towers cleaned inside and out, safely, at any height.</p><a href="https://kwccalgary.com/commercial-window-cleaning-service/">Commercial Window Cleaning</a></div>
     </div>
   </div>
 </section>
